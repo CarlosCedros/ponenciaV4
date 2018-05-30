@@ -24,29 +24,29 @@
 	<div class="container content-section">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">			
-				<form method="post" action="mailer/contact.php" id="contactform">
+				<form method="post" action="mailer/mail.php" id="contactform">
 					<div class="form">
-						<input type="text" name="name" placeholder="Nombre Completo *">
+						<input type="text" name="nombre" placeholder="Nombre(s) *">
 						<input type="text" name="apellido" placeholder="Apellidos *">
 						<input type="email" name="email" placeholder="Dirección de correo electrónico *">
-						<input type="text" name="phone" placeholder="Teléfono de contacto *">
+						<input type="text" name="telefono" placeholder="Teléfono de contacto *">
 						<fieldset class="form-group">
 							<legend>Quiero :</legend>
 							<div class="form-check">
 								<label class="form-check-label">participar con un Taller / Ponencia
-									<input type="radio" class="form-check-input" name="optionsRadios"  value="0"  id="hide">
+									<input type="radio" class="form-check-input" name="optionsRadios"  value="SI"  id="hide">
 									
 								</label>
 
 								<label class="form-check-label">participar asistiendo a un Taller / Ponencia
-									<input type="radio" class="form-check-input" name="optionsRadios"  value="1" id="show" checked>
+									<input type="radio" class="form-check-input" name="optionsRadios"  value="NO" id="show" checked>
 									
 								</label>
 							</div>							
 						</fieldset>
 						<div class="form-group" id="temas">
 							<label for="exampleSelect1" >Título: Taller / Ponencia</label>
-							<select class="form-control" id="tipoCurso">
+							<select class="form-control" id="tipoCurso" name="tipoCurso">
 								<option>^w^</option>
 								<option>Espionaje Virtual</option>
 								<option>La industria tecnológica</option>
