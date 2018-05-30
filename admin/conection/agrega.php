@@ -7,7 +7,7 @@
 	//$yourfield = "your_field"; 
    // Create connection
 $conn = new mysqli($servername, $username, $password);
-  mysqli_query($conn,"select * from cursos");
+  mysqli_query($conn,"SELECT * FROM cursos");
 
 // Check connection
 if ($conn->connect_error) {
@@ -16,7 +16,20 @@ if ($conn->connect_error) {
 //echo "conexión satisfactoria";
 
 
+/* insertar */
+$sql = "INSERT INTO cursos (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')";
 
-//$conn->close();
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+/* insertar */
+
+
+
+
+$conn->close();
 
 ?>

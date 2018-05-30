@@ -26,7 +26,7 @@
         <div class="container content-section">
           <div class="row">
             <h1 class="text-center">Cursos</h1>
-            <h3 class="text-center">Ponencias O Talleres</h3>
+            <h3 class="text-center">Ponencias Ó Talleres</h3>
             <div class="row" style="margin-right: auto;margin-left: auto;">
               <div class="col-sm-4 " >
                 <button type="button" class="btn btn-info" style="margin: 20px;" data-toggle="modal" data-target="#agregarP" data-backdrop="static" data-keyboard="false">Agregar Nuevo Taller o Ponencia</button>
@@ -37,7 +37,7 @@
                 <div class="container">                        
                   <div class="row">
                     <?php 
-                    include"conection/conection.php";
+                    include"conection/conection.php";                 
                     ?>         
                     <table id="cursosAdmin" class="table table-striped table-bordered" style="width:100%">
                       <thead>
@@ -50,31 +50,33 @@
                           <th>Tipo</th>
                           <th>Foto expositor</th>
                           <th>Nombre expositor</th>
-                          <th>Resumen Curso</th>
-                          <th>Edita ó Elimina</th>
+                          <th>Resumen Curso</th>                          
                           <th>Activo / Inactivo</th>
+                          <th>Edita ó Elimina</th>
 
                         </tr>
                       </thead>
                       <tbody>
 
-                        <?php $sql = "select * from cursos";
-                        $result = db_query($sql);
-                        while($row = mysqli_fetch_object($result)){ ?>
+                        <?php 
+                        $sql = "select * from cursos";
+                        $result = $conn->query($sql);                        
+                        while($row = mysqli_fetch_array($result)){                           
+                          ?>
                           <tr>
-                            <td><?php echo $row->tituloTallerPonencia; ?></td>
-                            <td><?php echo $row->fechaInicio; ?></td>
-                            <td><?php echo $row->fechaFin; ?></td>
-                            <td><?php echo $row->hora; ?></td>
-                            <td><?php echo $row->duracion; ?></td>
-                            <td><?php echo $row->tipo; ?></td>
-                            <td>foto</td>
-                            <td><?php echo $row->nombreExpositor; ?></td>
-                            <td><?php echo $row->resumen; ?></td>
-                            <td><?php echo $row->activo; ?></td>
+                            <td><?php echo $row['tituloTallerPonencia'] ?></td>
+                            <td><?php echo $row['fechaInicio'] ?></td>
+                            <td><?php echo $row['fechaFin'] ?></td>
+                            <td><?php echo $row['hora'] ?></td>
+                            <td><?php echo $row['duracion'] ?></td>
+                            <td><?php echo $row['tipo'] ?></td>
+                            <td><?php echo $row['imagen'] ?></td>
+                            <td><?php echo $row['nombreExpositor'] ?></td>
+                            <td><?php echo $row['resumen'] ?></td>                                                   
+                            <td><?php echo $row['cursoActivo'] ?></td> 
                             <td>
                               <div align="center">
-                                <form action="borrar.php" method="post">
+                                <form action="conection/borrar.php" method="post">
                                   <input type="hidden" name="idCursos" value="<?php echo $row['idCursos']; ?>" />
                                   <button class="mult_submit" type="submit" name="submit_mult" value="Borrar" title="Borrar">
                                     <a class="btn"  data-toggle="tooltip" title="Eliminar">
@@ -83,30 +85,34 @@
                                   </button>
                                 </form>
                               </div>
-
-
                               <div align="center">
-                                <form action="borrar.php" method="post">
-                                  <input type="hidden" name="idCursos" value="<?php echo $row['idCursos']; ?>" />
-
-                                  <a class="btn"  title="Editar" data-toggle="modal" data-target="#editModal" data-backdrop="static" data-keyboard="false">
-                                    <i class="fa fa-2x fa-edit" ></i>
-                                  </a>
+                                <form action="conection/editar.php" method="post">
+                                  <input type="hidden" name="idCursos" value="<?php echo $row['idCursos']; ?>" /> 
+                                      <button class="mult_submit" type="submit" name="submit_edit" value="Editar" title="Editar">                             
+                                    <a class="btn" type="submit" title="Editar" data-toggle="modal" data-target="#editModal" data-backdrop="static" data-keyboard="false">
+                                      <i class="fa fa-2x fa-edit" ></i>
+                                    </a>
+                                  </button>
                                 </form>
                               </div>
-                            </td>  
-                            <td>
-                              <div class="checkbox">
-                                <label><input type="checkbox" value="">Activo</label>
-                              </div>
-                            </td>                 
+                            </td>                                             
                           </tr>
                         <?php } ?>
 
 
                       </tbody>
                       <tfoot>
-
+                          <th>Título</th>
+                          <th>Fecha de inicio</th>
+                          <th>Fecha final</th>
+                          <th>Hora del curso</th>
+                          <th>Duración</th>
+                          <th>Tipo</th>
+                          <th>Foto expositor</th>
+                          <th>Nombre expositor</th>
+                          <th>Resumen Curso</th>                          
+                          <th>Activo / Inactivo</th>
+                          <th>Edita ó Elimina</th>
                       </tfoot>
                     </table>
                   </div>
@@ -117,7 +123,7 @@
         </div>
       </section>
       <!-- end section  -->
-
+<button class="btn btn-danger" data-toggle="modal" data-target="#agregarP" data-backdrop="static" data-keyboard="false">pop</button>
       <!-- Modal agregar-->
       <div id="agregarP" class="modal fade" role="dialog">
         <div class="modal-dialog">
